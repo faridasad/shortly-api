@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
-export const UrlSchema = new mongoose.Schema(
+export interface IURL extends mongoose.Document {
+  url: string;
+  shortUrl: string;
+}
+
+const UrlSchema = new mongoose.Schema(
   {
     url: {
       type: String,
@@ -13,3 +18,6 @@ export const UrlSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+const Url = mongoose.model<IURL>("Url", UrlSchema, "Links");
+export default Url;
